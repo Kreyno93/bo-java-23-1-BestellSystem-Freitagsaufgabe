@@ -1,11 +1,9 @@
 package de.neuefische;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 public class ShopService {
-
 
     private final ProductRepo productRepo;
     private final OrderRepo orderRepo;
@@ -19,7 +17,7 @@ public class ShopService {
         return productRepo.getProductById(id);
     }
 
-    public List<Product> getListOfProducts() {
+    public ArrayList<Product> getListOfProducts() {
         return productRepo.getListOfProducts();
     }
 
@@ -31,7 +29,7 @@ public class ShopService {
         return (orderRepo.getOrderById(id));
     }
 
-    public List<Order> getOrders(){
+    public ArrayList<Order> getListOfOrders(){
         return orderRepo.getListOfOrders();
     }
 

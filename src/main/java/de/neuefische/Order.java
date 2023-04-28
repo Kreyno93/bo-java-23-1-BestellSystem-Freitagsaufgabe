@@ -1,16 +1,17 @@
 package de.neuefische;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Order {
 
     private String id;
     private OrderStatus orderStatus;
-    private List<Product> products;
+    private ArrayList<Product> products;
 
-    public Order(String id, OrderStatus orderStatus, List<Product> products) {
+    public Order(String id, OrderStatus orderStatus, ArrayList<Product> products) {
         this.id = id;
         this.orderStatus = orderStatus;
         this.products = products;
@@ -54,11 +55,7 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
-    public List<Product> getProducts() {
+    public ArrayList<Product> getProducts() {
         return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 }

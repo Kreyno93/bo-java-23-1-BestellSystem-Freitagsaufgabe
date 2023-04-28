@@ -1,34 +1,27 @@
 package de.neuefische;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class ProductRepo {
 
-    private final List<Product> products = new ArrayList<>(List.of(
-            new Product("1", "Bread"),
-            new Product("2", "Butter"),
-            new Product("3", "Milk"),
-            new Product("4", "Cheese"),
-            new Product("5", "Eggs")
+    private final HashMap<String,Product> products = new HashMap<>(Map.of(
+            "1",new Product("1","Brot"),
+            "2",new Product("2","Milch"),
+            "3",new Product("3","Eier"),
+            "4",new Product("4","Käse"),
+            "5",new Product("5","Wurst")
     ));
 
     public ProductRepo() {
     }
 
-    public List<Product> getListOfProducts() {
-        return products;
+    public ArrayList<Product> getListOfProducts() {
+        return new ArrayList<>(products.values());
     }
 
-    public Optional<Product> getProductById(String id) {
-        for (Product product : products) {
-            if (product.getId().equals(id)) {
-                return Optional.of(product);
-            }
-        }
-        return Optional.empty();
+    public Optional<Product> getProductById(String id){
+        return Optional.ofNullable(products.get(id));
     }
 
     @Override

@@ -1,33 +1,28 @@
 package de.neuefische;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.sql.Array;
+import java.util.*;
 
 public class OrderRepo {
 
-    private ArrayList<Order> orders;
+    private HashMap<String,Order> orders;
 
     public void addOrder(Order order) {
-        orders.add(order);
+        orders.put(order.getId(),order);
     }
 
-    public OrderRepo(ArrayList<Order> orders) {
+    public OrderRepo(HashMap<String,Order> orders) {
         this.orders = orders;
     }
 
     public ArrayList<Order> getListOfOrders() {
-        return orders;
+        return new ArrayList<>(orders.values());
     }
 
-    public Optional<Order> getOrderById(String number) {
-        for (Order order : orders) {
-            if (order.getId().equals(number)) {
-                return Optional.of(order);
-            }
-        }
-        return Optional.empty();
+    public Optional<Order> getOrderById(String id){
+        if (orders.containsKey(id)){
+            return Optional.of(orders.get(id));
+        } return Optional.empty();
     }
 
     @Override

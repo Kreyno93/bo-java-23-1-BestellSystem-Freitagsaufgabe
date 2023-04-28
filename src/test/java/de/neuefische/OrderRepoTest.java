@@ -2,14 +2,16 @@ package de.neuefische;
 
 import org.junit.jupiter.api.Test;
 
+import java.sql.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class OrderRepoTest {
 
-    OrderRepo orderRepo = new OrderRepo(new ArrayList<>());
+    OrderRepo orderRepo = new OrderRepo(new HashMap<>());
 
     @Test
     void getListOfOrders() {

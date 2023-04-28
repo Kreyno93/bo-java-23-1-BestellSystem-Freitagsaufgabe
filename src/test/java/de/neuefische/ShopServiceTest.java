@@ -2,16 +2,15 @@ package de.neuefische;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.lang.reflect.Array;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ShopServiceTest {
 
     ProductRepo productRepo = new ProductRepo();
-    OrderRepo orderRepo = new OrderRepo(new ArrayList<>());
+    OrderRepo orderRepo = new OrderRepo(new HashMap<>());
 
     ShopService shopService = new ShopService(productRepo, orderRepo);
 
@@ -19,7 +18,7 @@ class ShopServiceTest {
     void getProductById_withValidId_returnsCorrectProduct() {
         //GIVEN
         String id = "1";
-        Optional<Product> expected = Optional.of(new Product("1", "Bread"));
+        Optional<Product> expected = Optional.of(new Product("1", "Brot"));
 
         //WHEN
         Optional<Product> actual = shopService.getProductById(id);
@@ -29,7 +28,7 @@ class ShopServiceTest {
     }
 
     @Test
-    void getProductById_withInvalidId_returnsOptionalEmpty(){
+    void getProductById_withInvalidId_returnsOptionalEmpty() {
         //GIVEN
         String id = "6";
         Optional<Product> expected = Optional.empty();
@@ -44,16 +43,17 @@ class ShopServiceTest {
     @Test
     void getListOfProducts() {
         //GIVEN
-        List<Product> expected = List.of(
-                new Product("1", "Bread"),
-                new Product("2", "Butter"),
-                new Product("3", "Milk"),
-                new Product("4", "Cheese"),
-                new Product("5", "Eggs")
+        ArrayList<Product> expected = new ArrayList<>(List.of(
+                new Product("1", "Brot"),
+                new Product("2", "Milch"),
+                new Product("3", "Eier"),
+                new Product("4", "Käse"),
+                new Product("5", "Wurst")
+        )
         );
 
         //WHEN
-        List<Product> actual = shopService.getListOfProducts();
+        ArrayList<Product> actual = shopService.getListOfProducts();
 
         //THEN
         assertEquals(expected, actual);
@@ -62,12 +62,14 @@ class ShopServiceTest {
     @Test
     void addOrder() {
         //GIVEN
-        Order orderToAdd = new Order("1",OrderStatus.OPEN, shopService.getListOfProducts());
-        List<Order> expected = List.of(orderToAdd);
+        Order orderToAdd = new Order("1", OrderStatus.OPEN, new ArrayList<>());
+        ArrayList<Order> expected = new ArrayList<>(List.of(
+                new Order("1", OrderStatus.OPEN, new ArrayList<>())
+        ));
 
         //WHEN
         shopService.addOrder(orderToAdd);
-        List<Order> actual = shopService.getOrders();
+        ArrayList<Order> actual = shopService.getListOfOrders();
 
         //THEN
         assertEquals(expected, actual);
@@ -76,7 +78,7 @@ class ShopServiceTest {
     @Test
     void getOrderById_withValidId_returnCorrectOrder() {
         //GIVEN
-        Order orderToAdd = new Order("1",OrderStatus.OPEN, shopService.getListOfProducts());
+        Order orderToAdd = new Order("1", OrderStatus.OPEN, shopService.getListOfProducts());
         Optional<Order> expected = Optional.of(orderToAdd);
 
         //WHEN
@@ -88,9 +90,9 @@ class ShopServiceTest {
     }
 
     @Test
-    void getOrderById_withInvalidId_returnOptionalEmpty(){
+    void getOrderById_withInvalidId_returnOptionalEmpty() {
         //GIVEN
-        Order orderToAdd = new Order("1", OrderStatus.OPEN,shopService.getListOfProducts());
+        Order orderToAdd = new Order("1", OrderStatus.OPEN, shopService.getListOfProducts());
         Optional<Order> expected = Optional.empty();
 
         //WHEN
@@ -104,12 +106,14 @@ class ShopServiceTest {
     @Test
     void getOrders() {
         //GIVEN
-        Order orderToAdd = new Order("1", OrderStatus.OPEN,shopService.getListOfProducts());
-        List<Order> expected = List.of(orderToAdd);
+        Order orderToAdd = new Order("1", OrderStatus.OPEN, shopService.getListOfProducts());
+        ArrayList<Order> expected = new ArrayList<>(List.of(
+                orderToAdd)
+        );
 
         //WHEN
         shopService.addOrder(orderToAdd);
-        List<Order> actual = shopService.getOrders();
+        ArrayList<Order> actual = shopService.getListOfOrders();
 
         //THEN
         assertEquals(expected, actual);
