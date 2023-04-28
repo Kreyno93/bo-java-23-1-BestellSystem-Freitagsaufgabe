@@ -15,6 +15,13 @@ public class OrderRepo {
         this.orders = orders;
     }
 
+    @Override
+    public String toString() {
+        return "OrderRepo{" +
+                "orders=" + orders +
+                '}';
+    }
+
     public ArrayList<Order> getListOfOrders() {
         return new ArrayList<>(orders.values());
     }
@@ -23,13 +30,6 @@ public class OrderRepo {
         if (orders.containsKey(id)){
             return Optional.of(orders.get(id));
         } return Optional.empty();
-    }
-
-    @Override
-    public String toString() {
-        return "OrderRepo{" +
-                "orders=" + orders +
-                '}';
     }
 
     @Override

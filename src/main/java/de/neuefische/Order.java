@@ -30,15 +30,6 @@ public class Order {
         return Objects.hash(id, orderStatus, products);
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id='" + id + '\'' +
-                ", orderStatus=" + orderStatus +
-                ", products=" + products +
-                '}';
-    }
-
     public String getId() {
         return id;
     }
@@ -57,5 +48,14 @@ public class Order {
 
     public ArrayList<Product> getProducts() {
         return products;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id='" + id + '\'' +
+                ", orderStatus=" + orderStatus +
+                ", products=" + products +
+                '}';
     }
 }

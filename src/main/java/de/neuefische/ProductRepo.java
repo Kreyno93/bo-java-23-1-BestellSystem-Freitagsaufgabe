@@ -13,6 +13,13 @@ public class ProductRepo {
             "5",new Product("5","Wurst")
     ));
 
+    @Override
+    public String toString() {
+        return "ProductRepo{" +
+                "products=" + products +
+                '}';
+    }
+
     public ProductRepo() {
     }
 
@@ -21,14 +28,9 @@ public class ProductRepo {
     }
 
     public Optional<Product> getProductById(String id){
-        return Optional.ofNullable(products.get(id));
-    }
-
-    @Override
-    public String toString() {
-        return "ProductRepo{" +
-                "products=" + products +
-                '}';
+        if (products.containsKey(id)){
+            return Optional.of(products.get(id));
+        } return Optional.empty();
     }
 
     @Override
