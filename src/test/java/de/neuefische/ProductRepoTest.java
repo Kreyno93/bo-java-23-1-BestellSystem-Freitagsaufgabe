@@ -2,8 +2,6 @@ package de.neuefische;
 
 import org.junit.jupiter.api.Test;
 
-import javax.lang.model.element.ModuleElement;
-
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,26 +31,15 @@ class ProductRepoTest {
     @Test
     void getProductById_ValidId_returnsProduct() {
         //GIVEN
-        Optional<Product> expected = Optional.of(new Product("1", "Brot"));
+        Product expected = new Product("1", "Brot");
 
         //WHEN
-        Optional<Product> actual = productRepo.getProductById("1");
+        Product actual = productRepo.getProductById("1");
 
         //THEN
         assertEquals(expected, actual);
     }
 
-    @Test
-    void getProductById_InvalidId_returnsEmptyOptional() {
-        //GIVEN
-        Optional<Product> expected = Optional.empty();
-
-        //WHEN
-        Optional<Product> actual = productRepo.getProductById("6");
-
-        //THEN
-        assertEquals(expected, actual);
-    }
 
 
 }

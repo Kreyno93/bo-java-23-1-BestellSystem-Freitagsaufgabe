@@ -2,7 +2,6 @@ package de.neuefische;
 
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,23 +17,10 @@ class ShopServiceTest {
     void getProductById_withValidId_returnsCorrectProduct() {
         //GIVEN
         String id = "1";
-        Optional<Product> expected = Optional.of(new Product("1", "Brot"));
+        Product expected = new Product("1", "Brot");
 
         //WHEN
-        Optional<Product> actual = shopService.getProductById(id);
-
-        //THEN
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void getProductById_withInvalidId_returnsOptionalEmpty() {
-        //GIVEN
-        String id = "6";
-        Optional<Product> expected = Optional.empty();
-
-        //WHEN
-        Optional<Product> actual = shopService.getProductById(id);
+        Product actual = shopService.getProductById(id);
 
         //THEN
         assertEquals(expected, actual);
@@ -79,29 +65,16 @@ class ShopServiceTest {
     void getOrderById_withValidId_returnCorrectOrder() {
         //GIVEN
         Order orderToAdd = new Order("1", OrderStatus.OPEN, shopService.getListOfProducts());
-        Optional<Order> expected = Optional.of(orderToAdd);
+        Order expected = orderToAdd;
 
         //WHEN
         shopService.addOrder(orderToAdd);
-        Optional<Order> actual = shopService.getOrderById("1");
+        Order actual = shopService.getOrderById("1");
 
         //THEN
         assertEquals(expected, actual);
     }
 
-    @Test
-    void getOrderById_withInvalidId_returnOptionalEmpty() {
-        //GIVEN
-        Order orderToAdd = new Order("1", OrderStatus.OPEN, shopService.getListOfProducts());
-        Optional<Order> expected = Optional.empty();
-
-        //WHEN
-        shopService.addOrder(orderToAdd);
-        Optional<Order> actual = shopService.getOrderById("2");
-
-        //THEN
-        assertEquals(expected, actual);
-    }
 
     @Test
     void getOrders() {

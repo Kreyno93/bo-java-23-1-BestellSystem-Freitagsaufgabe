@@ -1,6 +1,5 @@
 package de.neuefische;
 
-import java.sql.Array;
 import java.util.*;
 
 public class OrderRepo {
@@ -26,10 +25,8 @@ public class OrderRepo {
         return new ArrayList<>(orders.values());
     }
 
-    public Optional<Order> getOrderById(String id){
-        if (orders.containsKey(id)){
-            return Optional.of(orders.get(id));
-        } return Optional.empty();
+    public Order getOrderById(String id){
+        return orders.get(id);
     }
 
     @Override

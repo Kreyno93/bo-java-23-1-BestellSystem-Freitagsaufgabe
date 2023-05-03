@@ -1,6 +1,5 @@
 package de.neuefische;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class ProductRepo {
@@ -27,10 +26,8 @@ public class ProductRepo {
         return new ArrayList<>(products.values());
     }
 
-    public Optional<Product> getProductById(String id){
-        if (products.containsKey(id)){
-            return Optional.of(products.get(id));
-        } return Optional.empty();
+    public Product getProductById(String id){
+        return products.get(id);
     }
 
     @Override

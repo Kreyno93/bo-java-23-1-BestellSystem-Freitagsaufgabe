@@ -1,7 +1,7 @@
 package de.neuefische;
 
 import java.util.ArrayList;
-import java.util.Optional;
+
 
 public class ShopService {
 
@@ -13,7 +13,7 @@ public class ShopService {
         this.orderRepo = orderRepo;
     }
 
-    public Optional<Product> getProductById(String id) {
+    public Product getProductById(String id) {
         return productRepo.getProductById(id);
     }
 
@@ -25,7 +25,7 @@ public class ShopService {
         orderRepo.addOrder(orderToAdd);
     }
 
-    public Optional<Order> getOrderById(String id){
+    public Order getOrderById(String id){
         return (orderRepo.getOrderById(id));
     }
 
