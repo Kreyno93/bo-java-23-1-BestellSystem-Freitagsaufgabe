@@ -2,9 +2,11 @@ package de.neuefische;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ShopServiceTest {
 
@@ -65,14 +67,13 @@ class ShopServiceTest {
     void getOrderById_withValidId_returnCorrectOrder() {
         //GIVEN
         Order orderToAdd = new Order("1", OrderStatus.OPEN, shopService.getListOfProducts());
-        Order expected = orderToAdd;
 
         //WHEN
         shopService.addOrder(orderToAdd);
         Order actual = shopService.getOrderById("1");
 
         //THEN
-        assertEquals(expected, actual);
+        assertEquals(orderToAdd, actual);
     }
 
 
